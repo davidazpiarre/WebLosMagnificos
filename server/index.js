@@ -454,6 +454,15 @@ app.delete('/api/collaborators/:id', authenticateToken, isAdmin, async (req, res
     }
 });
 
+// Servir frontend compilado (producción)
+const DIST_DIR = path.resolve(__dirname, '../dist');
+if (fs.existsSync(DIST_DIR)) {
+    app.use(express.static(DIST_DIR));
+    app.get('*', (req, res) => {
+        res.sendFile(path.join(DIST_DIR, 'index.html'));
+    });
+}
+
 app.listen(PORT, () => {
             console.log('------------------------------------------------');
             console.log(`🚀 SERVIDOR CORRIENDO: http://localhost:${PORT}`);

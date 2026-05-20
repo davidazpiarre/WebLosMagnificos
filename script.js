@@ -221,7 +221,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const msg = document.getElementById('login-message');
 
             try {
-                const res = await fetch('http://localhost:3000/api/login', {
+                const res = await fetch('/api/login', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ username, password })
@@ -252,7 +252,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const loadBlogs = async () => {
         if (!blogGrid) return;
         try {
-            const res = await fetch('http://localhost:3000/api/blogs');
+            const res = await fetch('/api/blogs');
             const blogs = await res.json();
             allHomepageBlogs = blogs;
 
@@ -284,7 +284,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const loadHomeActivities = async () => {
         if (!homeActivitiesGrid) return;
         try {
-            const res = await fetch('http://localhost:3000/api/activities?year=2025');
+            const res = await fetch('/api/activities?year=2025');
             const activities = await res.json();
 
             // Ordenar: próximamente primero, finalizadas después
@@ -354,7 +354,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const loadHomeGallery = async () => {
         if (!homeGalleryGrid) return;
         try {
-            const res = await fetch('http://localhost:3000/api/gallery');
+            const res = await fetch('/api/gallery');
             const images = await res.json();
 
             if (images.length === 0) {
@@ -394,7 +394,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!grid) return;
 
         try {
-            const res = await fetch('http://localhost:3000/api/collaborators');
+            const res = await fetch('/api/collaborators');
             const collaborators = await res.json();
 
             if (collaborators.length === 0) {
@@ -462,7 +462,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- Load Settings (Podcast Links) ---
     const loadSettings = async () => {
         try {
-            const res = await fetch('http://localhost:3000/api/settings?t=' + Date.now());
+            const res = await fetch('/api/settings?t=' + Date.now());
             const settings = await res.json();
 
             const updatePodcast = (prefix, linkId, imgId, titleId) => {
@@ -502,7 +502,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (countdownEl) {
         const loadEventCountdown = async () => {
             try {
-                const res = await fetch('http://localhost:3000/api/settings');
+                const res = await fetch('/api/settings');
                 const settings = await res.json();
                 const eventName = settings.event_name || 'Próximo Evento';
                 const eventDate = settings.event_date;
@@ -586,7 +586,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     setTimeout(() => {
         // Enviar tracking después de 2 segundos (bounce falso si se va antes)
-        fetch('http://localhost:3000/api/track', {
+        fetch('/api/track', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
