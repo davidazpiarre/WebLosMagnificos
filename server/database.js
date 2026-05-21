@@ -2,6 +2,10 @@ const { Pool } = require('pg');
 const bcrypt = require('bcryptjs');
 
 async function setupDatabase() {
+    if (!process.env.DATABASE_URL) {
+        throw new Error('DATABASE_URL no está definida. Añádela como variable de entorno en Railway.');
+    }
+
     const pool = new Pool({
         connectionString: process.env.DATABASE_URL,
         ssl: { rejectUnauthorized: false }
