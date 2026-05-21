@@ -476,7 +476,7 @@
             }
 
             try {
-                const response = await fetch(`http://localhost:3000/api/activities?year=${currentYear}`);
+                const response = await fetch(`/api/activities?year=${currentYear}`);
                 currentActivitiesList = await response.json();
 
                 // Ordenar: próximamente primero, finalizadas después

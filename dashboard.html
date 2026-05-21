@@ -367,7 +367,7 @@
         const token = localStorage.getItem('magnificos_token');
         if (!token) window.location.href = 'index.html';
 
-        const api = "http://localhost:3000/api";
+        const api = "/api";
         const headers = { 'Authorization': `Bearer ${token}`, 'Content-Type': 'application/json' };
 
         // FUNCIÓN PARA SUBIR ARCHIVOS AL SERVIDOR
@@ -388,7 +388,7 @@
                 }
                 
                 const data = await res.json();
-                return `http://localhost:3000${data.url}`;
+                return data.url;
             } catch (err) {
                 console.error("Error en uploadImage:", err);
                 throw err;

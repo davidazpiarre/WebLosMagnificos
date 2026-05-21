@@ -522,7 +522,7 @@
             document.title = `${displayTitle} | Los Magníficos`;
 
             try {
-                const response = await fetch(`http://localhost:3000/api/gallery?year=${year}`);
+                const response = await fetch(`/api/gallery?year=${year}`);
                 currentGalleryImages = await response.json();
 
                 if (currentGalleryImages.length === 0) {
